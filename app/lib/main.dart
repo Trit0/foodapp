@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:foodapp/pages/homepage.page.dart';
+import 'package:foodapp/features/pantry/pantry.page.dart';
+import 'package:foodapp/navigation/router.dart';
 
 void main() {
   runApp(const FoodApp());
@@ -13,6 +14,7 @@ class FoodApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'FoodApp',
+      routes: MyRouter.getRoutes(),
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -25,7 +27,7 @@ class FoodApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.green,
       ),
-      home: const MyHomePage(title: 'FoodApp'),
+      home: const PantryPage(title: 'FoodApp'),
     );
   }
 }

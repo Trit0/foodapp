@@ -1,5 +1,5 @@
 import { DatabaseEntities } from "../../common/models/database-entities.model";
-import { Column, ForeignKey, Table } from "sequelize-typescript";
+import { BelongsTo, Column, ForeignKey, Table } from "sequelize-typescript";
 import { Ingredients } from "../../ingredients/models/ingredients.model";
 import { Accounts } from "../../accounts/models/account.model";
 
@@ -21,4 +21,10 @@ export class PantryItems extends DatabaseEntities {
 
   @Column
   public newestEntry: Date;
+
+  @BelongsTo(() => Ingredients)
+  public ingredient: Ingredients;
+
+  @BelongsTo(() => Accounts)
+  public account: Accounts;
 }

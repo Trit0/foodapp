@@ -5,12 +5,12 @@ class BaseApi {
   late String baseUrl;
 
   BaseApi(String path) {
-    baseUrl = "http://localhost:3000/$path";
+    baseUrl = "http://10.0.2.2:3000/$path";
     http = Dio();
   }
 
   // ignore: avoid_init_to_null
-  String url({ String? path = null }) {
+  String url({String? path}) {
     return path != null ? "$baseUrl/$path" : baseUrl;
   }
 }

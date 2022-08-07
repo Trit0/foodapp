@@ -1,6 +1,6 @@
 import { DatabaseEntities } from "../../common/models/database-entities.model";
 import { Column, ForeignKey, Table } from "sequelize-typescript";
-import { DataTypes } from "sequelize/types";
+import { DataTypes } from "sequelize";
 import { Ingredients } from "./ingredients.model";
 
 @Table
