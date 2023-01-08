@@ -39,7 +39,11 @@ dependencies:
   velocity_x: ^3.5.1
   styled_widget: ^0.4.0+3
   flutter_barcode_scanner: ^2.0.0
+  flutter_bloc: 8.0.1
   dio: ^4.0.6
+  bloc: ^8.1.0
+  hydrated_bloc: ^8.1.0
+  equatable: ^2.0.5
 
 dev_dependencies:
   flutter_test:

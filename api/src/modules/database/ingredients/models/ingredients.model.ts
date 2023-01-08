@@ -1,5 +1,5 @@
 import { DatabaseEntities } from "../../common/models/database-entities.model";
-import { Column, ForeignKey, Table } from "sequelize-typescript";
+import { AllowNull, BelongsTo, Column, ForeignKey, Table } from "sequelize-typescript";
 import { Translation } from "../../../translations/models/translation.model";
 import { DataTypes } from "sequelize";
 
@@ -7,17 +7,18 @@ import { DataTypes } from "sequelize";
 export class Ingredients extends DatabaseEntities {
   @Column
   @ForeignKey(() => Ingredients)
-  public duplicateOf: number;
+  public variationOfIngredientId: number;
 
+  @AllowNull(false)
   @Column(DataTypes.JSON)
   public name: Translation;
 
   @Column(DataTypes.JSON)
   public description: Translation;
 
-  @Column(DataTypes.FLOAT)
-  public averagePrice: number;
-
   @Column
-  public averageLifespan: number;
+  public imagePath: string;
+
+  @BelongsTo(() => Ingredients)
+  public variationOfIngredient: Ingredients;
 }

@@ -1,8 +1,10 @@
 import { DatabaseEntities } from "../../common/models/database-entities.model";
-import { Column, Table } from "sequelize-typescript";
+import { AllowNull, Column, Table } from "sequelize-typescript";
+import { Languages } from "../../../translations/languages.enum";
 
 @Table
 export class Accounts extends DatabaseEntities {
+  @AllowNull(false)
   @Column
   public email: string;
 
@@ -11,4 +13,10 @@ export class Accounts extends DatabaseEntities {
 
   @Column
   public lastName: string;
+
+  @Column
+  public password: string;
+
+  @Column
+  public language: Languages;
 }

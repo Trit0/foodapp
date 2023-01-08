@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:foodapp/api/api.service.dart';
-import 'package:foodapp/api/foodapp/pantry/models/pantry_item.model.dart';
+import 'package:foodapp/api/pantry/models/pantry_item.model.dart';
 import 'package:foodapp/features/ingredients/ingredient_not_foud/ingredient_not_found.page.dart';
 import 'package:foodapp/features/pantry/widgets/ingredient-card/pantry_item_card.widget.dart';
+import 'package:foodapp/repositories/grocery-products.repository.dart';
 import 'package:foodapp/widgets/base_list/base_list.widget.dart';
 
 class AddItemPage extends StatefulWidget {
@@ -15,21 +17,39 @@ class AddItemPage extends StatefulWidget {
 class _AddItemPageState extends State<AddItemPage> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController skuController = TextEditingController();
-  final ApiService api = ApiService.instance;
+  late GroceryProductsRepository groceryRepository;
+  String content = "";
 
   void submit() async {
     if (_formKey.currentState!.validate()) {
-      final response =
-          await api.ingredient.findProductBySku(skuController.text);
-      print(response.statusCode);
-      if (response.statusCode == 200 && response.data == "") {
+      final grocery =
+          await groceryRepository.groceryProductApi.getGroceryProductBySku(skuController.text);
+      if (grocery == null) {
         Navigator.pushNamed(context, "/ingredient/notfound");
+      } else {
+        if (grocery.name != null) {
+          setState(() {
+            content = grocery.name!;
+          });
+        }
       }
+    }
+  }
+
+  void tryScan() async {
+    String barcodeScanRes = await FlutterBarcodeScanner.scanBarcode("#ff6666", "Cancel", true, ScanMode.DEFAULT);
+    print(barcodeScanRes);
+    if (barcodeScanRes != "-1") {
+      setState(() {
+        content = barcodeScanRes;
+        skuController.text = barcodeScanRes;
+      });
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    groceryRepository = GroceryProductsRepository.of(context);
     return Scaffold(
         appBar: AppBar(
           title: const Text("Add item"),
@@ -58,8 +78,12 @@ class _AddItemPageState extends State<AddItemPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               ElevatedButton(
+                                  onPressed: tryScan,
+                                  child: const Text('Scan')),
+                              ElevatedButton(
                                   onPressed: submit,
                                   child: const Text('Search')),
+                              Text(content)
                             ],
                           )
                         ],

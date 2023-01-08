@@ -4,7 +4,7 @@ import { Translation } from "../../../translations/models/translation.model";
 import { DataTypes } from "sequelize";
 
 @Table
-export class IngredientTypes extends DatabaseEntities {
+export class IngredientCategories extends DatabaseEntities {
   @Column(DataTypes.JSON)
   public name: Translation;
 

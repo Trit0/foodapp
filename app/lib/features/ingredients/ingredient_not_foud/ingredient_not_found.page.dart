@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foodapp/api/api.service.dart';
-import 'package:foodapp/api/foodapp/pantry/models/pantry_item.model.dart';
+import 'package:foodapp/api/pantry/models/pantry_item.model.dart';
 import 'package:foodapp/features/ingredients/ingredient_not_foud/ingredient_not_found.page.dart';
 import 'package:foodapp/features/pantry/widgets/ingredient-card/pantry_item_card.widget.dart';
 import 'package:foodapp/widgets/base_list/base_list.widget.dart';

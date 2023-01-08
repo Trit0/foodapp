@@ -1,13 +1,11 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:foodapp/features/pantry/pantry.page.dart';
 import 'package:foodapp/navigation/router.dart';
 
-void main() {
-  runApp(const FoodApp());
-}
-
 class FoodApp extends StatelessWidget {
-  const FoodApp({super.key});
+  final Dio dio;
+  FoodApp({required this.dio});
 
   // This widget is the root of your application.
   @override

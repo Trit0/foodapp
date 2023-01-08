@@ -10,7 +10,9 @@ module.exports = {
         allowNull: false
       },
       first_name: Sequelize.STRING,
-      last_name: Sequelize.STRING
+      last_name: Sequelize.STRING,
+      password: Sequelize.STRING,
+      language: Sequelize.STRING,
     })
   },
 
