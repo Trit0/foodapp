@@ -12,6 +12,6 @@ class EnvironmentConfig {
   final String apiUrl;
 
   const EnvironmentConfig({
-    required String this.apiUrl
+    required this.apiUrl
   });
 }

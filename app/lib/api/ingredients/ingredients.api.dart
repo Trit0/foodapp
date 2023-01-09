@@ -5,6 +5,6 @@ class IngredientApi extends BaseApi {
   IngredientApi(Dio http) : super(http, "ingredient");
 
   Future<Response<dynamic>> findProductBySku(String skuCode) async {
-    return http.get<dynamic>(url(path: skuCode));
+    return http.get<dynamic>(url(skuCode));
   }
 }

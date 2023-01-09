@@ -1,4 +1,4 @@
-import 'package:foodapp/api/foodapp/ingredients/ingredients.api.dart';
+import 'package:foodapp/api/ingredients/ingredients.api.dart';
 
 class IngredientsRepository {
   final IngredientApi _ingredientApi;

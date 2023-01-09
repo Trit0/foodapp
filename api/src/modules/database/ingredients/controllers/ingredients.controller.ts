@@ -14,7 +14,7 @@ export class IngredientsController {
     req: express.Request,
     res: express.Response
   ): Promise<void> {
-    const item = await this.service.findBySku(req.params["skuCode"]);
-    res.send(item).status(200).end();
+    // const item = await this.service.findBySku(req.params["skuCode"]);
+    // res.send(item).status(200).end();
   }
 }

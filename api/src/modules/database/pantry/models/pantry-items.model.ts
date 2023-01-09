@@ -1,30 +1,34 @@
 import { DatabaseEntities } from "../../common/models/database-entities.model";
-import { BelongsTo, Column, ForeignKey, Table } from "sequelize-typescript";
-import { Ingredients } from "../../ingredients/models/ingredients.model";
-import { Accounts } from "../../accounts/models/account.model";
+import { BelongsTo, Column, Default, ForeignKey, Table } from "sequelize-typescript";
+import { Homes } from "../../accounts/models/home.model";
+import { GroceryProducts } from "../../grocery_products/models/grocery-products.model";
 
 @Table
 export class PantryItems extends DatabaseEntities {
   @Column
-  @ForeignKey(() => Ingredients)
-  public ingredientId: number;
+  @ForeignKey(() => GroceryProducts)
+  public groceryProductId: number;
 
   @Column
-  @ForeignKey(() => Accounts)
-  public accountId: number;
+  @ForeignKey(() => Homes)
+  public homeId: number;
 
   @Column
   public itemCount: number;
 
+  @Default(false)
   @Column
-  public oldestEntry: Date;
+  public isLow: boolean;
 
-  @Column
-  public newestEntry: Date;
+  // @Column
+  // public oldestEntry: Date;
+  //
+  // @Column
+  // public newestEntry: Date;
 
-  @BelongsTo(() => Ingredients)
-  public ingredient: Ingredients;
+  @BelongsTo(() => GroceryProducts)
+  public groceryProduct: GroceryProducts;
 
-  @BelongsTo(() => Accounts)
-  public account: Accounts;
+  @BelongsTo(() => Homes)
+  public home: Homes;
 }
