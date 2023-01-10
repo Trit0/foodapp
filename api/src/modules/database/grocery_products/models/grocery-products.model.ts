@@ -28,7 +28,7 @@ export class GroceryProducts extends DatabaseEntities {
     public averagePrice: number;
 
     @Column
-    public averageLifeSpanDays: number;
+    public averageLifespanDays: number;
 
     @Column
     public imagePath: string;

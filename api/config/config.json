@@ -4,13 +4,7 @@
     "password": null,
     "database": "foodapp",
     "host": "127.0.0.1",
-    "dialect": "mysql",
-    "define":{
-      "paranoid":false,
-      "timestamps":true,
-      "freezeTableName": true,
-      "underscored": true
-    }
+    "dialect": "mysql"
   },
   "test": {
     "username": "root",

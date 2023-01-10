@@ -2,6 +2,7 @@ import 'dart:collection';
 
 import 'package:dio/dio.dart';
 import 'package:foodapp/api/base_api.dart';
+import 'package:foodapp/api/common/types/json.type.dart';
 import 'package:foodapp/api/grocery-products/models/grocery-products.model.dart';
 
 class GroceryProductApi extends BaseApi {
@@ -10,8 +11,7 @@ class GroceryProductApi extends BaseApi {
   Future<GroceryProductsModel?> getGroceryProductBySku(String skuCode) async {
     try {
       final Response response = await http.get(url(), queryParameters: { "sku": skuCode });
-      print(response);
-      return GroceryProductsModel.fromJson(LinkedHashMap<String, dynamic>.from(response.data["data"]));
+      return GroceryProductsModel.fromJson(Json.from(response.data));
     } catch(e) {
       if (e is DioError && e.response?.statusCode == 400) return null;
       print(e);

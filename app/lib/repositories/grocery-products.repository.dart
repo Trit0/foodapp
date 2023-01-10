@@ -8,6 +8,4 @@ class GroceryProductsRepository {
   final GroceryProductApi groceryProductApi;
 
   GroceryProductsRepository(this.groceryProductApi);
-
-
 }

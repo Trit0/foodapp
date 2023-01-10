@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foodapp/api/grocery-products/apis/grocery-product.api.dart';
 import 'package:foodapp/api/ingredients/ingredients.api.dart';
 import 'package:foodapp/api/pantry/pantry.api.dart';
-import 'package:foodapp/main.dart';
+import 'package:foodapp/app.widget.dart';
 import 'package:foodapp/repositories/grocery-products.repository.dart';
 import 'package:foodapp/repositories/ingredients.repository.dart';
 import 'package:foodapp/repositories/pantry.repository.dart';

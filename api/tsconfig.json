@@ -5,18 +5,14 @@
         "removeComments": true,
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
-        "target": "es2020",
+        "target": "es2017",
         "sourceMap": true,
-        "outDir": "dist",
-        "baseUrl": ".",
-        "incremental": true,
-        "paths": {
-            "*": [
-                "node_modules/*"
-            ]
-        }
+        "outDir": "./test-backend/api/dist",
+        "baseUrl": "./",
+        "incremental": true
     },
-    "include": [
-        "src/**/*",
+    "exclude": [
+      "test-backend/api/node_modules",
+        "dist"
     ]
 }

@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "removeComments": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "target": "es2019",
+        "sourceMap": true,
+        "outDir": "./data-migrations-dist",
+        "baseUrl": "./",
+        "incremental": true,
+        "resolveJsonModule": true
+    },
+    "include": [
+      "data-migrations",
+      "data-migrations/**/*.json",
+      "data-migrations/**/*.csv",
+      "src"
+    ],
+    "exclude": [
+      "test-backend/api/node_modules", "dist"]
+}

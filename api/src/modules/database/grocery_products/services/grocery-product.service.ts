@@ -1,6 +1,8 @@
 import { DatabaseRepository } from "../../common/repositories/database.repository";
 import { GroceryProducts } from "../models/grocery-products.model";
+import { Injectable } from "@nestjs/common";
 
+@Injectable()
 export class GroceryProductService extends DatabaseRepository<GroceryProducts> {
     constructor() {
         super(GroceryProducts);

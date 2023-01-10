@@ -1,10 +1,10 @@
 {
     "extends": "./tsconfig.json",
     "exclude": [
-        "node_modules",
-        "test",
+      "test-backend/api/node_modules",
+      "test",
         "dist",
-        "data-migrations",
+      "data-migrations",
         "**/*spec.ts"
     ]
 }
