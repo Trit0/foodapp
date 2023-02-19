@@ -4,11 +4,16 @@ import { Injectable } from "@nestjs/common";
 
 @Injectable()
 export class PantryService extends DatabaseRepository<PantryItems> {
-  constructor() {
-    super(PantryItems);
-  }
+    constructor() {
+        super(PantryItems);
+    }
 
-  public async getAllItems(): Promise<PantryItems[]> {
-    return this.findAll();
-  }
+    public async findAllItems(): Promise<PantryItems[]> {
+        const pantryItems = await this.findAll({
+            include: ["groceryProduct", "home"]
+        });
+
+        pantryItems.forEach((p) => console.log(p.toJSON()));
+        return pantryItems;
+    }
 }

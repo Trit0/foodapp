@@ -1,21 +1,19 @@
-import 'dart:collection';
-
-import 'package:equatable/equatable.dart';
 import 'package:foodapp/api/common/models/database-entity.model.dart';
+import 'package:foodapp/api/common/types/json.type.dart';
 
-class GroceryProductsModel extends DatabaseEntityModel with EquatableMixin {
-  int? ingredientId;
-  int? duplicateOfGroceryProductId;
-  String? name;
-  String? description;
-  String? skuCode;
-  double? averagePrice;
-  int? averageLifeSpanDays;
-  String? imagePath;
+class GroceryProductsModel extends DatabaseEntityModel {
+  final int? ingredientId;
+  final int? duplicateOfGroceryProductId;
+  final String? name;
+  final String? description;
+  final String? skuCode;
+  final double? averagePrice;
+  final int? averageLifeSpanDays;
+  final String? imagePath;
   dynamic productMetadata;
 
   GroceryProductsModel({
-    int? id,
+    required super.id,
     this.ingredientId,
     this.duplicateOfGroceryProductId,
     this.name,
@@ -25,44 +23,22 @@ class GroceryProductsModel extends DatabaseEntityModel with EquatableMixin {
     this.averageLifeSpanDays,
     this.imagePath,
     this.productMetadata,
-    DateTime? createdAt,
-    DateTime? updatedAt,
-    DateTime? deletedAt
-}) : super(id, createdAt, updatedAt, deletedAt);
+    super.createdAt,
+    super.updatedAt,
+    super.deletedAt,
+  });
 
-  GroceryProductsModel.fromJson(LinkedHashMap<String, dynamic>? json) : super.fromJson(json) {
-    if (json == null) return;
-
-    name = json["name"];
-
-    if (json["ingredientId"] != null) {
-      ingredientId = json["ingredientId"];
-    }
-
-    if (json["duplicateOfGroceryProductId"] != null) {
-      duplicateOfGroceryProductId = json["duplicateOfGroceryProductId"];
-    }
-
-    if (json["description"] != null) {
-      description = json["description"];
-    }
-
-    if (json["skuCode"] != null) {
-      skuCode = json["skuCode"];
-    }
-
-    if (json["averagePrice"] != null) {
-      averagePrice = json["averagePrice"];
-    }
-
-    if (json["averageLifeSpanDays"] != null) {
-      averageLifeSpanDays = json["averageLifeSpanDays"];
-    }
-
-    if (json["productMetadata"] != null) {
-      productMetadata = json["productMetadata"];
-    }
-  }
+  GroceryProductsModel.fromJson(Json json)
+      : name = json["name"],
+        ingredientId = json["ingredientId"],
+        duplicateOfGroceryProductId = json["duplicateOfGroceryProductId"],
+        description = json["description"],
+        skuCode = json["skuCode"],
+        averagePrice = json["averagePrice"],
+        averageLifeSpanDays = json["averageLifeSpanDays"],
+        productMetadata = json["productMetadata"],
+        imagePath = json["imagePath"],
+        super.fromJson(json);
 
   GroceryProductsModel copyWith({
     int? ingredientId,
@@ -74,7 +50,7 @@ class GroceryProductsModel extends DatabaseEntityModel with EquatableMixin {
     int? averageLifeSpanDays,
     String? imagePath,
     dynamic productMetadata,
-}) {
+  }) {
     return GroceryProductsModel(
       id: id,
       ingredientId: ingredientId ?? this.ingredientId,
@@ -91,22 +67,4 @@ class GroceryProductsModel extends DatabaseEntityModel with EquatableMixin {
       deletedAt: deletedAt,
     );
   }
-
-  @override
-  List<Object?> get props => [
-    id,
-    createdAt,
-    updatedAt,
-    deletedAt,
-    ingredientId,
-    duplicateOfGroceryProductId,
-    name,
-    description,
-    skuCode,
-    averagePrice,
-    averageLifeSpanDays,
-    imagePath,
-    productMetadata
-  ];
-
 }

@@ -7,12 +7,13 @@
         "experimentalDecorators": true,
         "target": "es2017",
         "sourceMap": true,
-        "outDir": "./test-backend/api/dist",
+        "outDir": "./dist",
         "baseUrl": "./",
         "incremental": true
     },
     "exclude": [
-      "test-backend/api/node_modules",
+        "foodapp/api/node_modules",
+        "ceto",
         "dist"
     ]
 }

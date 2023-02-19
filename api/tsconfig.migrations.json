@@ -18,5 +18,5 @@
       "src"
     ],
     "exclude": [
-      "test-backend/api/node_modules", "dist"]
+      "foodapp/api/node_modules", "dist"]
 }

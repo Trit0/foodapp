@@ -2,7 +2,7 @@ import { DatabaseRepository } from "../../common/repositories/database.repositor
 import { Ingredients } from "../models/ingredients.model";
 
 export class IngredientsService extends DatabaseRepository<Ingredients> {
-  constructor() {
-    super(Ingredients);
-  }
+    constructor() {
+        super(Ingredients);
+    }
 }

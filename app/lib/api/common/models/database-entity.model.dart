@@ -1,39 +1,30 @@
-import 'dart:collection';
+import 'package:foodapp/api/common/types/json.type.dart';
+import 'package:foodapp/utils/json.utils.dart';
 
 class DatabaseEntityModel {
-  int? id;
-  DateTime? createdAt;
-  DateTime? updatedAt;
-  DateTime? deletedAt;
+  final int id;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
+  final DateTime? deletedAt;
 
-  DatabaseEntityModel(this.id, this.createdAt, this.updatedAt, this.deletedAt);
+  DatabaseEntityModel({required this.id, this.createdAt, this.updatedAt, this.deletedAt});
 
-  DatabaseEntityModel.fromJson(LinkedHashMap<String, dynamic>? json) {
-    if (json == null) return;
+  DatabaseEntityModel.fromJson(Json json)
+      : id = json["id"],
+        createdAt = JsonUtils.parseIfNotNull(json["createdAt"], DateTime.parse)?.toLocal(),
+        updatedAt = JsonUtils.parseIfNotNull(json["updatedAt"], DateTime.parse)?.toLocal(),
+        deletedAt = JsonUtils.parseIfNotNull(json["deletedAt"], DateTime.parse)?.toLocal();
 
-    id = json["id"];
-    if (json["createdAt"] != null) {
-      createdAt = DateTime.tryParse(json["createdAt"])?.toLocal();
-    }
-    if (json["updatedAt"] != null) {
-      updatedAt = DateTime.tryParse(json["updatedAt"])?.toLocal();
-    }
-    if (json["deletedAt"] != null) {
-      deletedAt = DateTime.tryParse(json["deletedAt"])?.toLocal();
-    }
-  }
-
-  DatabaseEntityModel.merge(DatabaseEntityModel target, DatabaseEntityModel source) {
-    id = source.id ?? target.id;
-    createdAt = source.createdAt ?? target.createdAt;
-    updatedAt = source.updatedAt ?? target.updatedAt;
-    deletedAt = source.deletedAt ?? target.deletedAt;
-  }
+  DatabaseEntityModel.merge(DatabaseEntityModel target, DatabaseEntityModel source)
+      : id = source.id,
+        createdAt = source.createdAt ?? target.createdAt,
+        updatedAt = source.updatedAt ?? target.updatedAt,
+        deletedAt = source.deletedAt ?? target.deletedAt;
 
   Map<String, dynamic> toJson() => {
-    if (id != null) "id": id,
-    if (createdAt != null) "createdAt": createdAt?.toIso8601String(),
-    if (updatedAt != null) "updatedAt": updatedAt?.toIso8601String(),
-    if (deletedAt != null) "deletedAt": deletedAt?.toIso8601String(),
-  };
+        "id": id,
+        if (createdAt != null) "createdAt": createdAt?.toIso8601String(),
+        if (updatedAt != null) "updatedAt": updatedAt?.toIso8601String(),
+        if (deletedAt != null) "deletedAt": deletedAt?.toIso8601String(),
+      };
 }

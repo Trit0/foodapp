@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -5,14 +7,19 @@ import 'package:foodapp/api/grocery-products/apis/grocery-product.api.dart';
 import 'package:foodapp/api/ingredients/ingredients.api.dart';
 import 'package:foodapp/api/pantry/pantry.api.dart';
 import 'package:foodapp/app.widget.dart';
+import 'package:foodapp/interceptors/lang.interceptor.dart';
 import 'package:foodapp/repositories/grocery-products.repository.dart';
 import 'package:foodapp/repositories/ingredients.repository.dart';
 import 'package:foodapp/repositories/pantry.repository.dart';
-import 'package:hydrated_bloc/hydrated_bloc.dart';
-
 
 void mainDelegate() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await _run();
+}
+
+Future<void> _run() async {
   final dio = Dio();
+  dio.interceptors.add(LangInterceptor());
 
   // Setup APIs
   final ingredientsApi = IngredientApi(dio);
@@ -25,15 +32,21 @@ void mainDelegate() async {
   final groceryProductRepository = GroceryProductsRepository(groceryProductApi);
 
   // Add interceptors
-
   // Config onboarding
   // Request permissions
 
   // Run app with multiprovider
 
-  HydratedBlocOverrides.runZoned(() async => runApp(MultiRepositoryProvider(providers: [
-    RepositoryProvider(create: (_) => ingredientsRepository),
-    RepositoryProvider(create: (_) => pantryRepository),
-    RepositoryProvider(create: (_) => groceryProductRepository)
-  ], child: FoodApp(dio: dio))));
+  runZoned(
+    () => runApp(
+      MultiRepositoryProvider(
+        providers: [
+          RepositoryProvider<IngredientsRepository>.value(value: ingredientsRepository),
+          RepositoryProvider<PantryRepository>.value(value: pantryRepository),
+          RepositoryProvider<GroceryProductsRepository>.value(value: groceryProductRepository),
+        ],
+        child: FoodApp(dio: dio),
+      ),
+    ),
+  );
 }

@@ -1,8 +1,9 @@
 import { DatabaseEntities } from "../../common/models/database-entities.model";
 import { AllowNull, BelongsTo, Column, ForeignKey, Table } from "sequelize-typescript";
 import { Accounts } from "./accounts.model";
-import { Translation } from "../../../translations/models/translation.model";
 import { DataTypes } from "sequelize";
+import { TranslationObject } from "@recursyve/nestjs-rosetta-core";
+import { TranslationColumn } from "@recursyve/nestjs-rosetta-sequelize";
 
 @Table
 export class Homes extends DatabaseEntities {
@@ -12,7 +13,9 @@ export class Homes extends DatabaseEntities {
 
     @AllowNull(false)
     @Column(DataTypes.JSON)
-    public name: Translation;
+    @TranslationColumn()
+    // TODO should be a string
+    public name: TranslationObject;
 
     @BelongsTo(() => Accounts)
     public ownerAccount: Accounts;

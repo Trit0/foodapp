@@ -1,8 +1,9 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:foodapp/pages/app/home/home.page.dart';
+import 'package:foodapp/pages/pantry/pantry.page.dart';
 import 'package:foodapp/routing/main.router.dart';
-import 'package:foodapp/theme/app.theme.dart';
-import 'package:nice_flutter_kit/nice_flutter_kit.dart';
 
 class FoodApp extends StatelessWidget {
   final _router = MainRouter();
@@ -13,17 +14,38 @@ class FoodApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: Setup NiceAuth
-
-    return MaterialApp.router(
-      routerDelegate: _router.delegate(),
-      routeInformationParser: _router.defaultRouteParser(),
-      routeInformationProvider: _router.routeInfoProvider(),
+    return CupertinoApp(
       debugShowCheckedModeBanner: false,
-      title: "Base",
-      // supportedLocales: NiceLocalizations.supportedLocales,
-      // localizationsDelegates: NiceLocalizations.delegates,
-      // localeResolutionCallback: NiceLocalizations.localResolutionCallback,
-      theme: AppTheme.generateTheme(),
+      theme: CupertinoTheme.of(context).copyWith(primaryColor: Colors.lightGreen),
+      home: CupertinoTabScaffold(
+        tabBar: CupertinoTabBar(
+          items: const [
+            BottomNavigationBarItem(icon: Icon(CupertinoIcons.house_fill), label: "Pantry"),
+            BottomNavigationBarItem(icon: Icon(CupertinoIcons.square_list_fill), label: "Groceries"),
+          ],
+        ),
+        tabBuilder: (BuildContext context, int index) {
+          return CupertinoTabView(
+            builder: (context) {
+              if (index == 0) {
+                return const PantryPage();
+              }
+              return HomePage();
+            },
+          );
+        },
+      ),
     );
+
+    //   return CupertinoApp.router(
+    //     routerDelegate: _router.delegate(),
+    //     routeInformationParser: _router.defaultRouteParser(),
+    //     routeInformationProvider: _router.routeInfoProvider(),
+    //     debugShowCheckedModeBanner: false,
+    //     title: "Base",
+    //     // supportedLocales: NiceLocalizations.supportedLocales,
+    //     // localizationsDelegates: NiceLocalizations.delegates,
+    //     // localeResolutionCallback: NiceLocalizations.localResolutionCallback,
+    //   );
   }
 }

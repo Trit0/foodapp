@@ -5,30 +5,30 @@ import { GroceryProducts } from "../../grocery_products/models/grocery-products.
 
 @Table
 export class PantryItems extends DatabaseEntities {
-  @Column
-  @ForeignKey(() => GroceryProducts)
-  public groceryProductId: number;
+    @Column
+    @ForeignKey(() => GroceryProducts)
+    public groceryProductId: number;
 
-  @Column
-  @ForeignKey(() => Homes)
-  public homeId: number;
+    @Column
+    @ForeignKey(() => Homes)
+    public homeId: number;
 
-  @Column
-  public itemCount: number;
+    @Column
+    public itemCount: number;
 
-  @Default(false)
-  @Column
-  public isLow: boolean;
+    @Default(false)
+    @Column
+    public isLow: boolean;
 
-  // @Column
-  // public oldestEntry: Date;
-  //
-  // @Column
-  // public newestEntry: Date;
+    // @Column
+    // public oldestEntry: Date;
+    //
+    // @Column
+    // public newestEntry: Date;
 
-  @BelongsTo(() => GroceryProducts)
-  public groceryProduct: GroceryProducts;
+    @BelongsTo(() => GroceryProducts)
+    public groceryProduct: GroceryProducts;
 
-  @BelongsTo(() => Homes)
-  public home: Homes;
+    @BelongsTo(() => Homes)
+    public home: Homes;
 }

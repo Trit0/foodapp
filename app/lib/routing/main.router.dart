@@ -3,9 +3,6 @@ import 'package:flutter/widgets.dart';
 import 'package:foodapp/pages/add_pantry_item/add_item.page.dart';
 import 'package:foodapp/pages/app/app.page.dart';
 import 'package:foodapp/pages/app/home/home.page.dart';
-import 'package:foodapp/pages/auth/auth.page.dart';
-import 'package:foodapp/pages/auth/sign-in/sign-in.page.dart';
-
 import 'package:foodapp/pages/pantry/pantry.page.dart';
 
 part 'main.router.gr.dart';
@@ -22,9 +19,7 @@ part 'main.router.gr.dart';
       path: "/",
       initial: true,
       page: PantryPage,
-      meta: {
-        "title": "Foodapp"
-      },
+      meta: {"title": "Foodapp"},
       children: [
         RedirectRoute(
           path: "*",
@@ -32,16 +27,12 @@ part 'main.router.gr.dart';
         ),
       ],
     ),
-    AutoRoute(
-      path: "/add-item",
-      page: AddItemPage,
-      children: [
-        RedirectRoute(
-          path: "*",
-          redirectTo: "",
-        ),
-      ]
-    ),
+    AutoRoute(path: "/add-item", page: AddItemPage, children: [
+      RedirectRoute(
+        path: "*",
+        redirectTo: "",
+      ),
+    ]),
     AutoRoute(
       path: "/app",
       page: AppPage,

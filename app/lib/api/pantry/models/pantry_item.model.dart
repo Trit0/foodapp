@@ -1,41 +1,37 @@
-import 'package:equatable/equatable.dart';
 import 'package:foodapp/api/common/models/database-entity.model.dart';
 import 'package:foodapp/api/common/types/json.type.dart';
+import 'package:foodapp/api/grocery-products/models/grocery-products.model.dart';
+import 'package:foodapp/utils/json.utils.dart';
 
-
-class PantryItemsModel extends DatabaseEntityModel with EquatableMixin {
+class PantryItemsModel extends DatabaseEntityModel {
   int? groceryProductId;
   int? homeId;
   int? itemCount;
   bool? isLow;
+  GroceryProductsModel? groceryProduct;
 
   PantryItemsModel({
-    int? id,
+    required super.id,
     this.groceryProductId,
     this.homeId,
     this.itemCount,
     this.isLow,
-    DateTime? createdAt,
-    DateTime? updatedAt,
-    DateTime? deletedAt
-  }) : super(id, createdAt, updatedAt, deletedAt);
+    this.groceryProduct,
+    super.createdAt,
+    super.updatedAt,
+    super.deletedAt,
+  });
 
-  PantryItemsModel.fromJson(Json? json) : super.fromJson(json) {
-    if (json == null) return;
+  PantryItemsModel.fromJson(Json json)
+      : groceryProductId = json["groceryProductId"],
+        homeId = json["homeId"],
+        itemCount = json["itemCount"],
+        isLow = json["isLow"],
+        groceryProduct = JsonUtils.parseIfNotNull(json["groceryProduct"], GroceryProductsModel.fromJson),
+        super.fromJson(json);
 
-    groceryProductId = json["groceryProductId"];
-
-    if (json["homeId"] != null) {
-      homeId = json["homeId"];
-    }
-
-    if (json["itemCount"] != null) {
-      itemCount = json["itemCount"];
-    }
-
-    if (json["isLow"] != null) {
-      isLow = json["isLow"];
-    }
+  static List<PantryItemsModel> fromJsonList(JsonArray json) {
+    return json.map((pantryItem) => PantryItemsModel.fromJson(pantryItem)).toList();
   }
 
   PantryItemsModel copyWith({
@@ -43,6 +39,7 @@ class PantryItemsModel extends DatabaseEntityModel with EquatableMixin {
     int? homeId,
     int? itemCount,
     bool? isLow,
+    GroceryProductsModel? groceryProduct,
   }) {
     return PantryItemsModel(
       id: id,
@@ -50,23 +47,10 @@ class PantryItemsModel extends DatabaseEntityModel with EquatableMixin {
       homeId: homeId ?? this.homeId,
       itemCount: itemCount ?? this.itemCount,
       isLow: isLow ?? this.isLow,
+      groceryProduct: groceryProduct ?? this.groceryProduct,
       createdAt: createdAt,
       updatedAt: updatedAt,
       deletedAt: deletedAt,
     );
   }
-
-  @override
-  List<Object?> get props => [
-    id,
-    createdAt,
-    updatedAt,
-    deletedAt,
-    groceryProductId,
-    homeId,
-    itemCount,
-    isLow
-  ];
-
-
 }

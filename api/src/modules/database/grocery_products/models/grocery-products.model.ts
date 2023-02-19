@@ -1,8 +1,9 @@
 import { DatabaseEntities } from "../../common/models/database-entities.model";
 import { AllowNull, BelongsTo, Column, ForeignKey, Table } from "sequelize-typescript";
 import { Ingredients } from "../../ingredients/models/ingredients.model";
-import { Translation } from "../../../translations/models/translation.model";
 import { DataTypes } from "sequelize";
+import { TranslationColumn } from "@recursyve/nestjs-rosetta-sequelize";
+import { TranslationObject } from "@recursyve/nestjs-rosetta-core";
 
 @Table
 export class GroceryProducts extends DatabaseEntities {
@@ -16,10 +17,12 @@ export class GroceryProducts extends DatabaseEntities {
 
     @AllowNull(false)
     @Column(DataTypes.JSON)
-    public name: Translation;
+    @TranslationColumn()
+    public name: TranslationObject;
 
     @Column(DataTypes.JSON)
-    public description: Translation;
+    @TranslationColumn()
+    public description: TranslationObject;
 
     @Column
     public skuCode: string;

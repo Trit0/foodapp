@@ -5,13 +5,13 @@ class Environment {
     Environment._config = environmentConfig;
   }
 
-  static get apiUrl => _config.apiUrl;
+  static String get apiUrl => _config.apiUrl;
 }
 
 class EnvironmentConfig {
   final String apiUrl;
 
   const EnvironmentConfig({
-    required this.apiUrl
+    required this.apiUrl,
   });
 }

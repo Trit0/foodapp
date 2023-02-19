@@ -1,10 +1,11 @@
 {
     "extends": "./tsconfig.json",
     "exclude": [
-      "test-backend/api/node_modules",
+      "foodapp/api/node_modules",
       "test",
-        "dist",
+      "dist",
+      "ceto",
       "data-migrations",
-        "**/*spec.ts"
+      "**/*spec.ts"
     ]
 }

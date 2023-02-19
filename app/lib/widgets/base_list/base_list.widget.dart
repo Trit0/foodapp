@@ -17,9 +17,11 @@ class BaseList<T> extends StatelessWidget {
     if ((data == null || data!.isEmpty) && emptyState != null) {
       return emptyState!;
     } else if (data != null && data!.isNotEmpty) {
-      return ListView.builder(
-        itemCount: data!.length,
-        itemBuilder: itemBuilder,
+      return Flexible(
+        child: ListView.builder(
+          itemCount: data!.length,
+          itemBuilder: itemBuilder,
+        ),
       );
     } else {
       return Container();
