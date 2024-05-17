@@ -1,15 +1,15 @@
 import { Variable } from "@recursyve/nestjs-config";
 
 export class DatabaseConfig {
-    @Variable
+    @Variable({ required: false })
     DB_HOST: string;
 
-    @Variable
+    @Variable({ required: false })
     DB_NAME: string;
 
-    @Variable
+    @Variable({ required: false })
     DB_USERNAME: string;
 
-    @Variable
+    @Variable({ required: false })
     DB_PORT: string;
 }

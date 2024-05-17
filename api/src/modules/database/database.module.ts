@@ -10,27 +10,6 @@ import { GroceryProductsModule } from "./grocery_products/grocery-products.modul
 import { IngredientsModule } from "./ingredients/ingredients.module";
 import { PantryModule } from "./pantry/pantry.module";
 
-/**
- * Fix for MySql v8+
- * GeomFromText doesn't exist anymore, it has been replace by ST_GeomFromText
- * https://github.com/sequelize/sequelize/issues/9786#issuecomment-474122602
- */
-
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const wkx = require("wkx");
-SequelizeBase.GEOMETRY.prototype._stringify = function _stringify(value, options) {
-    return `ST_GeomFromText(${options.escape(wkx.Geometry.parseGeoJSON(value).toWkt())})`;
-};
-SequelizeBase.GEOMETRY.prototype._bindParam = function _bindParam(value, options) {
-    return `ST_GeomFromText(${options.bindParam(wkx.Geometry.parseGeoJSON(value).toWkt())})`;
-};
-SequelizeBase.GEOGRAPHY.prototype._stringify = function _stringify(value, options) {
-    return `ST_GeomFromText(${options.escape(wkx.Geometry.parseGeoJSON(value).toWkt())})`;
-};
-SequelizeBase.GEOGRAPHY.prototype._bindParam = function _bindParam(value, options) {
-    return `ST_GeomFromText(${options.bindParam(wkx.Geometry.parseGeoJSON(value).toWkt())})`;
-};
-
 @Module({
     imports: [
         ConfigModule.forFeature(DatabaseConfig),
