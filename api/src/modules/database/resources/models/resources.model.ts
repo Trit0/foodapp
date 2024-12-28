@@ -4,16 +4,16 @@ import { ResourceTypes } from "./resource-types.model";
 
 @Table
 export class Resources extends DatabaseEntities {
-  @Column
-  name: string;
+    @Column
+    name: string;
 
-  @Column
-  path: string;
+    @Column
+    path: string;
 
-  @Column
-  @ForeignKey(() => ResourceTypes)
-  resourceTypeId: number;
+    @Column
+    @ForeignKey(() => ResourceTypes)
+    resourceTypeId: number;
 
-  @BelongsTo(() => ResourceTypes)
-  resourceType: ResourceTypes;
+    @BelongsTo(() => ResourceTypes)
+    resourceType: ResourceTypes;
 }

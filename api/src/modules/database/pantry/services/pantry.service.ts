@@ -13,7 +13,7 @@ export class PantryService extends DatabaseRepository<PantryItems> {
             include: ["groceryProduct", "home"]
         });
 
-        pantryItems.forEach((p) => console.log(p.toJSON()));
+        //pantryItems.forEach((p) => console.log(p.toJSON()));
         return pantryItems;
     }
 }

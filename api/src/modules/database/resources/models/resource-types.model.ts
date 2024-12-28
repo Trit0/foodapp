@@ -11,5 +11,5 @@ export class ResourceTypes extends DatabaseEntities {
     description: string;
 
     @HasMany(() => Resources)
-    resources: Resources[]
+    resources: Resources[];
 }

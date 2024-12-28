@@ -10,7 +10,6 @@ export abstract class DatabaseRepository<
     CreateDto = Partial<T>,
     UpdateDto = Partial<T>
 > extends DatabaseReadRepository<T> {
-
     protected constructor(repository: typeof E) {
         super(repository);
     }
@@ -60,7 +59,6 @@ export abstract class DatabaseRepository<
             transaction
         });
     }
-
 
     public async destroy(options?: DestroyOptions): Promise<void> {
         await this.repository.destroy(options);

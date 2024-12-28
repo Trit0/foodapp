@@ -9,8 +9,10 @@ export class GroceryProductService extends DatabaseRepository<GroceryProducts> {
     }
 
     public async findBySku(skuCode: string): Promise<GroceryProducts> {
-        return await this.findOne({ where: {
-            sku_code: skuCode
-        }})
+        return await this.findOne({
+            where: {
+                sku_code: skuCode
+            }
+        });
     }
 }

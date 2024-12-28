@@ -11,5 +11,8 @@ export class DatabaseConfig {
     DB_USERNAME: string;
 
     @Variable({ required: false })
+    DB_PASSWORD: string;
+
+    @Variable({ required: false })
     DB_PORT: string;
 }

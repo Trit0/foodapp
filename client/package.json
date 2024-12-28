@@ -9,13 +9,14 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "test": "jest --watchAll",
-    "lint": "expo lint"
+    "lint": "expo lint",
+    "start-pixel": "emulator -avd Pixel_4_API_30"
   },
   "jest": {
     "preset": "jest-expo"
   },
   "dependencies": {
-    "@expo/vector-icons": "^14.0.0",
+    "@expo/vectora-icons": "^14.0.0",
     "@react-navigation/native": "^6.0.2",
     "expo": "~51.0.7",
     "expo-constants": "~16.0.1",

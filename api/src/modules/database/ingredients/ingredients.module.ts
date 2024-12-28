@@ -5,8 +5,6 @@ import { IngredientCategories } from "./models/ingredient-categories.model";
 import { IngredientsIngredientCategories } from "./models/ingredients-ingredient-categories.model";
 
 @Module({
-    imports: [
-        SequelizeModule.forFeature([Ingredients, IngredientCategories, IngredientsIngredientCategories])
-    ]
+    imports: [SequelizeModule.forFeature([Ingredients, IngredientCategories, IngredientsIngredientCategories])]
 })
 export class IngredientsModule {}

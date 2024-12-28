@@ -5,8 +5,6 @@ import { Homes } from "./models/home.model";
 import { HomesAccounts } from "./models/homes-accounts.model";
 
 @Module({
-    imports: [
-        SequelizeModule.forFeature([Accounts, Homes, HomesAccounts])
-    ]
+    imports: [SequelizeModule.forFeature([Accounts, Homes, HomesAccounts])]
 })
 export class AccountsModule {}

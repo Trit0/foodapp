@@ -5,14 +5,8 @@ import { PantryController } from "./controllers/pantry.controller";
 import { PantryService } from "./services/pantry.service";
 
 @Module({
-    imports: [
-        SequelizeModule.forFeature([PantryItems])
-    ],
-    controllers: [
-        PantryController
-    ],
-    providers: [
-        PantryService
-    ]
+    imports: [SequelizeModule.forFeature([PantryItems])],
+    controllers: [PantryController],
+    providers: [PantryService]
 })
 export class PantryModule {}

@@ -4,19 +4,19 @@ import { Languages } from "../../../translations/languages.enum";
 
 @Table
 export class Accounts extends DatabaseEntities {
-  @AllowNull(false)
-  @Column
-  public email: string;
+    @AllowNull(false)
+    @Column
+    public email: string;
 
-  @Column
-  public firstName: string;
+    @Column
+    public firstName: string;
 
-  @Column
-  public lastName: string;
+    @Column
+    public lastName: string;
 
-  @Column
-  public password: string;
+    @Column
+    public password: string;
 
-  @Column
-  public language: Languages;
+    @Column
+    public language: Languages;
 }

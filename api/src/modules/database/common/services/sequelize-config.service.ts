@@ -15,11 +15,11 @@ export class SequelizeConfigService implements SequelizeOptionsFactory {
         return {
             autoLoadModels: true,
             synchronize: false,
-            dialect: "mysql",
+            dialect: "postgres",
             host: this.config.DB_HOST,
             port: +this.config.DB_PORT,
             username: this.config.DB_USERNAME,
-            password: "",
+            password: this.config.DB_PASSWORD ?? "",
             database: this.config.DB_NAME,
             logging: this.globalConfig.isProduction ? false : (log) => console.log(log),
             define: {

@@ -7,14 +7,8 @@ import { GroceryProductController } from "./controllers/grocery-product.controll
 import { GroceryProductService } from "./services/grocery-product.service";
 
 @Module({
-    imports: [
-        SequelizeModule.forFeature([Grocers, GroceryProducts, GroceryProductItems])
-    ],
-    controllers: [
-        GroceryProductController
-    ],
-    providers: [
-        GroceryProductService
-    ]
+    imports: [SequelizeModule.forFeature([Grocers, GroceryProducts, GroceryProductItems])],
+    controllers: [GroceryProductController],
+    providers: [GroceryProductService]
 })
 export class GroceryProductsModule {}
